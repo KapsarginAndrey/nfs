@@ -1,0 +1,1 @@
+{"dependencies":[["sshkey",["= 2.0.0"]],["vagrant-rekey-ssh",["= 0.1.9"]],["log4r",[">= 0"]],["concurrent-ruby",["~> 1.0"]],["i18n",[">= 0"]],["micromachine",[">= 2","< 4"]],["vagrant-vbguest",["= 0.29.0"]]],"checksum":"0dc21accf461322c010753ce71f438950c60db28e27ae4b67b9c70011de7a369","vagrant_version":"2.2.16"}
