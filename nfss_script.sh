@@ -11,13 +11,12 @@ sudo systemctl start nfs-server
 sudo systemctl start nfs-lock
 sudo systemctl start nfs-idmap
 
-sudo mkdir -p /backup/nfs_otus
-sudo chmod -R 777 /backup/nfs_otus
-sudo chown -R nfsnobody:nfsnobody /backup/nfs_otus
-sudo mkdir -p /backup/nfs_otus/upload
+sudo mkdir -p /usr/local/nfs
+sudo mkdir -p /usr/local/nfs/upload
+sudo chmod -R 777 /usr/local/nfs
 
-echo "/backup/nfs_otus 192.168.50.0/24 (rw,sync,no_root_squash,no_all_squash)" | sudo tee -a /etc/exports > /dev/null
-
+echo "/usr/local/nfs 192.168.50.0/24 (rw,root_squash)" | sudo tee -a /etc/exports > /dev/null
+sudo exportfs -r
 sudo systemctl restart nfs-server
 sudo systemctl enable firewalld
 sudo systemctl start firewalld
