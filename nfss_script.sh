@@ -15,7 +15,7 @@ sudo mkdir -p /usr/local/nfs
 sudo mkdir -p /usr/local/nfs/upload
 sudo chmod -R 777 /usr/local/nfs
 
-echo "/usr/local/nfs 192.168.50.0/24 (rw,root_squash)" | sudo tee -a /etc/exports > /dev/null
+echo "/usr/local/nfs *(rw,all_squash,root_squash,anonuid=1001,anongid=1001)" | sudo tee -a /etc/exports > /dev/null
 sudo exportfs -r
 sudo systemctl restart nfs-server
 sudo systemctl enable firewalld
@@ -28,6 +28,13 @@ sudo firewall-cmd --permanent --add-port=2049/tcp
 sudo firewall-cmd --permanent --add-port=46666/tcp
 sudo firewall-cmd --permanent --add-port=42955/tcp
 sudo firewall-cmd --permanent --add-port=875/tcp
+sudo firewall-cmd --permanent --add-port=111/udp
+sudo firewall-cmd --permanent --add-port=54302/udp
+sudo firewall-cmd --permanent --add-port=20048/udp
+sudo firewall-cmd --permanent --add-port=2049/udp
+sudo firewall-cmd --permanent --add-port=46666/udp
+sudo firewall-cmd --permanent --add-port=42955/udp
+sudo firewall-cmd --permanent --add-port=875/udp
 sudo firewall-cmd --permanent --zone=public --add-service=nfs
 sudo firewall-cmd --permanent --zone=public --add-service=mountd
 sudo firewall-cmd --permanent --zone=public --add-service=rpc-bind
